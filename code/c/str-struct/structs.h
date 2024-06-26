@@ -20,4 +20,5 @@ struct Place create_place(char *name, double latitude, double longitude);
 double distance(struct Coordinate, struct Coordinate);
 
 char *hello_world();
-char *reverse(char *str, int length);
+char *reverse(char *str);
+void reverse_chinese(char* str);

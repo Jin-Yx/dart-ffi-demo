@@ -5,13 +5,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include <string.h>
 #include "structs.h"
 
 int main()
 {
     printf("%s\n", hello_world());
     char* backwards = "backwards";
-    printf("%s reversed is %s\n", backwards, reverse(backwards, 9));
+    printf("%s reversed is %s\n", backwards, reverse(backwards));
 
     struct Coordinate coord = create_coordinate(3.5, 4.6);
     printf("Coordinate is lat %.2f, long %.2f\n", coord.latitude, coord.longitude);
@@ -29,8 +30,10 @@ char *hello_world()
     return "Hello World";
 }
 
-char *reverse(char *str, int length)
+char *reverse(char *str)
 {
+    int length = strlen(str);
+    printf("%s len is %d\n", str, length);
     // Allocates native memory in C.
     char *reversed_str = (char *)malloc((length + 1) * sizeof(char));
     for (int i = 0; i < length; i++)
@@ -38,11 +41,13 @@ char *reverse(char *str, int length)
         reversed_str[length - i - 1] = str[i];
     }
     reversed_str[length] = '\0';
+    printf("reverse alloc address: %p\n", reversed_str);
     return reversed_str;
 }
 
 void free_string(char *str)
 {
+    printf("free alloc address: %p\n", str);
     // Free native memory in C which was allocated in C.
     free(str);
 }
